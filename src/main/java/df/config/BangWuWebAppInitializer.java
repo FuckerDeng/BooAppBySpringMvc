@@ -10,7 +10,7 @@ public class BangWuWebAppInitializer extends AbstractAnnotationConfigDispatcherS
     protected Class<?>[] getRootConfigClasses() {
         System.out.println("执行了");
         logger.info("------root配置类初始化------");
-        return new Class<?>[]{RootConfig.class};//spring配置类
+        return new Class<?>[]{SpringConfig.class};//spring配置类
     }
 
     @Override

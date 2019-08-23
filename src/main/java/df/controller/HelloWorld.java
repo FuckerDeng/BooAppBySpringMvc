@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping(produces = {"text/html;charset=UTF-8;","application/json;"})
+@RequestMapping()
 public class HelloWorld {
 
     private Logger logger = LogManager.getLogger(HelloWorld.class);
@@ -29,10 +29,6 @@ public class HelloWorld {
         return "访问成功";
     }
 
-    @RequestMapping("fictions")
-    @ResponseBody
-    public String getFiction(@RequestParam(value = "nextPage",defaultValue = "1") int nextPage,@RequestParam(value = "c",defaultValue = "20") int pageSize){
-        logger.info("收到请求"+(++requestCount));
-        return JSONArray.toJSON(FictionsServer.getFictions(nextPage,pageSize)).toString();
-    }
+
+
 }

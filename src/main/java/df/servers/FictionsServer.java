@@ -2,6 +2,7 @@ package df.servers;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import df.beans.costombean.ReadChapter;
 import df.beans.dbbeans.Fiction;
 import df.dao.Dao;
 import df.dao.mappers.FictionMapper;
@@ -25,4 +26,19 @@ public class FictionsServer {
         }
         return fictions;
     }
+
+    public static ReadChapter getChpter(int fictionId, int chapterId){
+        SqlSession sqlSession = Dao.getSqlSession();
+        ReadChapter chapter = null;
+        try {
+            FictionMapper mapper = sqlSession.getMapper(FictionMapper.class);
+            chapter = mapper.chapter(fictionId, chapterId);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            sqlSession.close();
+        }
+        return chapter;
+    }
+
 }

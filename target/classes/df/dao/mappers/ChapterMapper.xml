@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="df.dao.mappers.ChapterMapper">
+  <resultMap id="BaseResultMap" type="df.beans.dbbeans.Chapter">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="chapter_id" jdbcType="INTEGER" property="chapterId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="fiction_id" jdbcType="INTEGER" property="fictionId" />
+    <result column="content_id" jdbcType="INTEGER" property="contentId" />
+    <result column="delete" jdbcType="TINYINT" property="delete" />
+    <result column="words" jdbcType="INTEGER" property="words" />
+    <result column="ctime" jdbcType="VARCHAR" property="ctime" />
+    <result column="mtime" jdbcType="VARCHAR" property="mtime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, chapter_id, title, fiction_id, content_id, delete, words, ctime, mtime
+  </sql>
+  <select id="selectByExample" parameterType="df.beans.dbbeans.ChapterExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from chapter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="df.beans.dbbeans.ChapterExample">
+    delete from chapter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="df.beans.dbbeans.Chapter">
+    insert into chapter (id, chapter_id, title, 
+      fiction_id, content_id, delete, 
+      words, ctime, mtime
+      )
+    values (#{id,jdbcType=INTEGER}, #{chapterId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{fictionId,jdbcType=INTEGER}, #{contentId,jdbcType=INTEGER}, #{delete,jdbcType=TINYINT}, 
+      #{words,jdbcType=INTEGER}, #{ctime,jdbcType=VARCHAR}, #{mtime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="df.beans.dbbeans.Chapter">
+    insert into chapter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="chapterId != null">
+        chapter_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="fictionId != null">
+        fiction_id,
+      </if>
+      <if test="contentId != null">
+        content_id,
+      </if>
+      <if test="delete != null">
+        delete,
+      </if>
+      <if test="words != null">
+        words,
+      </if>
+      <if test="ctime != null">
+        ctime,
+      </if>
+      <if test="mtime != null">
+        mtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="chapterId != null">
+        #{chapterId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="fictionId != null">
+        #{fictionId,jdbcType=INTEGER},
+      </if>
+      <if test="contentId != null">
+        #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="delete != null">
+        #{delete,jdbcType=TINYINT},
+      </if>
+      <if test="words != null">
+        #{words,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null">
+        #{ctime,jdbcType=VARCHAR},
+      </if>
+      <if test="mtime != null">
+        #{mtime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="df.beans.dbbeans.ChapterExample" resultType="java.lang.Long">
+    select count(*) from chapter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update chapter
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.chapterId != null">
+        chapter_id = #{record.chapterId,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fictionId != null">
+        fiction_id = #{record.fictionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.contentId != null">
+        content_id = #{record.contentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.delete != null">
+        delete = #{record.delete,jdbcType=TINYINT},
+      </if>
+      <if test="record.words != null">
+        words = #{record.words,jdbcType=INTEGER},
+      </if>
+      <if test="record.ctime != null">
+        ctime = #{record.ctime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mtime != null">
+        mtime = #{record.mtime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update chapter
+    set id = #{record.id,jdbcType=INTEGER},
+      chapter_id = #{record.chapterId,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      fiction_id = #{record.fictionId,jdbcType=INTEGER},
+      content_id = #{record.contentId,jdbcType=INTEGER},
+      delete = #{record.delete,jdbcType=TINYINT},
+      words = #{record.words,jdbcType=INTEGER},
+      ctime = #{record.ctime,jdbcType=VARCHAR},
+      mtime = #{record.mtime,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

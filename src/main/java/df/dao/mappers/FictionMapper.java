@@ -1,5 +1,6 @@
 package df.dao.mappers;
 
+import df.beans.costombean.ReadChapter;
 import df.beans.dbbeans.Fiction;
 import df.beans.dbbeans.FictionExample;
 import java.util.List;
@@ -23,4 +24,6 @@ public interface FictionMapper {
     int updateByExampleWithBLOBs(@Param("record") Fiction record, @Param("example") FictionExample example);
 
     int updateByExample(@Param("record") Fiction record, @Param("example") FictionExample example);
+
+    ReadChapter chapter(@Param("fictionId") int fictionId,@Param("chapterId") int chapterId);
 }
