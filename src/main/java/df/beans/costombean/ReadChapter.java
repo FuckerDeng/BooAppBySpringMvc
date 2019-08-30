@@ -5,6 +5,7 @@ public class ReadChapter {
     private String title;
     private int content_id;
     private String content;
+//    private String[] rows;
 
     public ReadChapter() {
     }
@@ -14,14 +15,6 @@ public class ReadChapter {
         this.title = title;
         this.content_id = content_id;
         this.content = content;
-    }
-
-    public int getChapterId() {
-        return chapter_Id;
-    }
-
-    public void setChapterId(int chapterId) {
-        this.chapter_Id = chapterId;
     }
 
     public String getTitle() {
@@ -47,6 +40,22 @@ public class ReadChapter {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public int getChapter_Id() {
+        return chapter_Id;
+    }
+
+    public void setChapter_Id(int chapter_Id) {
+        this.chapter_Id = chapter_Id;
+    }
+
+//    public String[] getRows() {
+//        return rows;
+//    }
+//
+//    public void setRows(String[] rows) {
+//        this.rows = rows;
+//    }
 
     @Override
     public String toString() {

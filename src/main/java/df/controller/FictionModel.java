@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping(produces = {"text/html;charset=UTF-8;","application/json;"},path = "fiction")
 public class FictionModel {
@@ -23,10 +26,22 @@ public class FictionModel {
 
     @RequestMapping("chapter")
     @ResponseBody
-    public String chapter(@RequestParam(value ="fictionid") int ficitonId, @RequestParam(value = "chapterid") int chapterId){
+    public String chapter(@RequestParam(value ="fictionid") int ficitonId, @RequestParam(value = "chapterid" ) int chapterId,@RequestParam(value = "needpreandnext") int needPreAndNext){
         System.out.println("fictionid="+ficitonId+"\tchapterid="+chapterId);
-        ReadChapter readChapter = FictionsServer.getChpter(ficitonId,chapterId);
-//        System.out.println(readChapter);
-        return JSONArray.toJSON(readChapter).toString();
+        ReadChapter preChapter = null;
+        ReadChapter nextChapter = null;
+        if(needPreAndNext==1){
+            preChapter = FictionsServer.getChpter(ficitonId,chapterId-1);
+            nextChapter = FictionsServer.getChpter(ficitonId,chapterId+1);
+        }
+        ReadChapter nowChapter = FictionsServer.getChpter(ficitonId,chapterId);
+
+        List<ReadChapter> readChapters = new ArrayList<>();
+        if(preChapter!=null) readChapters.add(preChapter);
+        if(nowChapter!=null) readChapters.add(nowChapter);
+        if(nextChapter!=null) readChapters.add(nextChapter);
+
+        System.out.println(JSONArray.toJSON(readChapters).toString());
+        return JSONArray.toJSON(readChapters).toString();
     }
 }
