@@ -16,7 +16,12 @@ public interface ChapterMapper {
 
     List<Chapter> selectByExample(ChapterExample example);
 
+
     int updateByExampleSelective(@Param("record") Chapter record, @Param("example") ChapterExample example);
 
     int updateByExample(@Param("record") Chapter record, @Param("example") ChapterExample example);
+
+    Chapter selectLastChapter(@Param("fictionId") Integer fictionId);
+
+    List<Chapter> selectAllChapters(@Param("fictionId") Integer fictionId);
 }

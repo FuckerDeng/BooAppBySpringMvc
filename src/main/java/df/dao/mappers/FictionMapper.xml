@@ -246,4 +246,16 @@
   <select id="chapter"  resultType="df.beans.costombean.ReadChapter">
     SELECT ch.chapter_id,ch.title,ch.content_id,co.content FROM chapter ch,content co WHERE ch.`fiction_id`=#{fictionId,jdbcType=INTEGER} AND ch.`content_id`=co.`id` AND  ch.`chapter_id`=#{chapterId,jdbcType=INTEGER};
   </select>
+
+  <select id="selectFromIds"  resultType="df.beans.dbbeans.Fiction" parameterType="list">
+    SELECT id,fiction_name,fiction_desc,author,fictiontype from fiction where id in (
+    <foreach collection="list" item="fictionId" separator=",">
+      #{fictionId}
+    </foreach>
+    )
+  </select>
+
+  <select id="selectSameTypeFictions" parameterType="string" resultType="df.beans.dbbeans.Fiction">
+    SELECT id,fiction_name,fiction_desc,author,fictiontype from fiction where fictiontype=#{typeName} limit 20
+  </select>
 </mapper>

@@ -219,5 +219,14 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
+</update>
+
+
+  <select id="selectLastChapter" parameterType="int" resultType="df.beans.dbbeans.Chapter">
+    SELECT id,chapter_id,title,fiction_id,ctime,mtime from chapter where fiction_id=#{fictionId} ORDER by chapter_id desc limit 1
+  </select>
+
+  <select id="selectAllChapters" resultType="df.beans.dbbeans.Chapter" parameterType="int">
+    SELECT id,chapter_id,title,fiction_id,content_id,words,ctime FROM chapter WHERE fiction_id=#{fictionId} ORDER BY chapter_id
+  </select>
 </mapper>

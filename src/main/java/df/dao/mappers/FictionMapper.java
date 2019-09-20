@@ -19,11 +19,18 @@ public interface FictionMapper {
 
     List<Fiction> selectByExample(FictionExample example);
 
+
+
     int updateByExampleSelective(@Param("record") Fiction record, @Param("example") FictionExample example);
 
     int updateByExampleWithBLOBs(@Param("record") Fiction record, @Param("example") FictionExample example);
 
     int updateByExample(@Param("record") Fiction record, @Param("example") FictionExample example);
 
+    ///下面为自己添加的方法
     ReadChapter chapter(@Param("fictionId") int fictionId,@Param("chapterId") int chapterId);
+
+    List<Fiction> selectFromIds(List<Integer> fictionIds);
+
+    List<Fiction> selectSameTypeFictions(@Param("typeName") String typeName);
 }
