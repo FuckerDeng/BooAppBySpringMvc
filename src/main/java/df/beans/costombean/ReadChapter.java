@@ -1,19 +1,19 @@
 package df.beans.costombean;
 
 public class ReadChapter {
-    private int chapter_Id;
+    private int chapterId;
     private String title;
-    private int content_id;
+    private int contentId;
     private String content;
 //    private String[] rows;
 
     public ReadChapter() {
     }
 
-    public ReadChapter(int chapterId, String title, int content_id, String content) {
-        this.chapter_Id = chapterId;
+    public ReadChapter(int chapterId, String title, int contentId, String content) {
+        this.chapterId = chapterId;
         this.title = title;
-        this.content_id = content_id;
+        this.contentId = contentId;
         this.content = content;
     }
 
@@ -26,11 +26,11 @@ public class ReadChapter {
     }
 
     public int getContent_id() {
-        return content_id;
+        return contentId;
     }
 
-    public void setContent_id(int content_id) {
-        this.content_id = content_id;
+    public void setContent_id(int contentId) {
+        this.contentId = contentId;
     }
 
     public String getContent() {
@@ -42,11 +42,11 @@ public class ReadChapter {
     }
 
     public int getChapter_Id() {
-        return chapter_Id;
+        return chapterId;
     }
 
-    public void setChapter_Id(int chapter_Id) {
-        this.chapter_Id = chapter_Id;
+    public void setChapter_Id(int chapterId) {
+        this.chapterId = chapterId;
     }
 
 //    public String[] getRows() {
@@ -60,9 +60,9 @@ public class ReadChapter {
     @Override
     public String toString() {
         return "ReadChapter{" +
-                "chapterId=" + chapter_Id +
+                "chapterId=" + chapterId +
                 ", title='" + title + '\'' +
-                ", content_id=" + content_id +
+                ", contentId=" + contentId +
                 ", content='" + content + '\'' +
                 '}';
     }

@@ -49,6 +49,7 @@ public class FictionsServer {
         try {
             FictionMapper mapper = sqlSession.getMapper(FictionMapper.class);
             chapter = mapper.chapter(fictionId, chapterId);
+
         }catch (Exception e){
             e.printStackTrace();
         }finally {
